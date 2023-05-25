@@ -21,7 +21,7 @@
                 break;
         }
     }else{
-        $_SESSION['auth'] = "Wrong login or password";
+        $_SESSION['auth'] = "Неверный логин или пароль";
         header('Location: authorization.php');
     }
     exit();

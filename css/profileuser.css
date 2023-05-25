@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.line {
+
+    border-bottom: 20px solid #b5cfc2;
+    transform: rotate(90deg);
+}
