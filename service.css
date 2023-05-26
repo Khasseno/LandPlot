@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+}
+.triangle{
+    width: 0;
+	height: 0;
+	border-right: 15px solid #b5cfc2;
+	border-bottom: 15px solid transparent;
+	border-top: 15px solid transparent;
+    border-radius: 15px;
+}
+.container{
+    font-size: 30px;
+    color:#6a6964;
+    margin-left: 30px;
+    position: relative;
+    top:30px; left:5px;
+    /* text-align: center; */
+}
+.title{
+    background-color: #b5cfc2;
+    color:white;
+    width: 900px;
+}
+.button-green{
+    position:relative;
+    left:1000px;
+    margin-left: 1000px;
+    bottom: 100px;
+    background-color: #00bf63;
+    color:white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    left: 100px;
+    border-radius: 10px;
+}
+.button-green2{
+    position:relative;
+    left:1000px;
+    margin-left: 1000px;
+    bottom: 162px;
+    background-color: #00bf63;
+    color:white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    left: 100px;
+    border-radius: 10px;
+}
