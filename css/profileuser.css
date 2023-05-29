@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
 
-* {
+*,
+*::after,
+*::before {
     margin: 0;
     padding: 0;
     border: 0;
@@ -8,72 +10,168 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-body {
-    justify-content: center;
-    align-items: center;
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bolder;
+    background-color: #b5cfc2;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px 40px;
 }
 
-li {
-    list-style: none;
+.line {
+    position: fixed;
+    right: 98.5%;
+    background-color: #b5cfc2;
+    height: 100%;
+    width: 25px;
+}
+
+.line2 {
+    position: fixed;
+    right: 95.5%;
+    background-color: #b5cfc2;
+    height: 100%;
+    width: 25px;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    padding: 50px 50px 0 0;
 }
 
 .fullname {
-    position: inherit;
-    padding-right: 10px;
-}
-
-header {
+    position: absolute;
+    font-weight: bolder;
+    right: 50px;
     color: #6a6964;
     font-size: 2.1rem;
-    font-weight: bolder;
-    padding-left: 65vw;
-    padding-right: 5vw;
-    padding-top: 4.5vw;
+    margin-right: 35px;
 }
 
-svg {
-    position: absolute;
-    margin: 1vw;
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-.open {
-    rotate: -180deg;
-    transition: 0.3s;
-}
-
-nav {
-    text-align: center;
-    margin-left: 82vw;
-    margin-right: 5vw;
-}
-
-.menu li {
-    font-size: 1.2rem;
-    border-radius: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
-    margin: 10px 0 10px 0;
-    padding: 10px;
-    background-color: #b5cfc2;
-    cursor: pointer;
+.navigator {
+    position: relative;
+    display: inline;
 }
 
 .menu {
+    list-style: none;
+    position: relative;
+    right: 0px;
+    margin-top: 50px;
+    height: 10%;
     opacity: 0%;
-    transition: 0.5s;
+    visibility: hidden;
+    transition: all 0.3s ease 0s;
+}
+
+.menu-btn {
+    background-color: #ffffff00;
+    position: absolute;
+    right: 3px;
+    top: 15px;
+    transition: 0.3s;
+    rotate: 180deg;
+}
+
+.open {
+    rotate: 0deg;
+    transition: 0.3s;
+}
+
+.menu li {
+    color: #fff;
+    font-weight: bolder;
+    background-color: #b5cfc2;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding: 10px;
 }
 
 .wrapper {
-    position: fixed;
-    background-color: #ececec;
-    border-radius: 20px;
-    display: block;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    left: 7.5vw;
+    top: 15vh;
+    width: 90%;
+}
+
+.application-title {
+    color: #6a6964;
+    font-size: 4rem;
+    font-weight: bolder;
+    margin-bottom: 20px;
     margin-left: 20px;
-    height: 67%;
-    width: 97%;
-    justify-content: center;
-    align-items: center;
+}
+
+.application-list {
+    color: #000;
+    position: relative;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    background-color: #73737315;
+    border-radius: 25px;
+    padding: 10px 30px;
+    min-height: 38.5vh;
+    max-height: 38.5vh;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.application {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    margin: 20px 0px;
+}
+
+.application * {
+    border-radius: 50px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+.application-name {
+    background-color: #b5cfc2;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 50%;
+    /* overflow-x: scroll; */
+}
+
+.application-status {
+    background-color: #c6cfb590;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 20%;
+}
+
+.success {
+    background-color: #b5cfc290;
+}
+
+.deny {
+    background-color: #cfb5b590;
+}
+
+.application-save {
+    background-color: #a6a6a670;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 20%;
 }
