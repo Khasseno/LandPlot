@@ -10,14 +10,14 @@
 .line1 {
     position: fixed; 
     border-left: 20px solid #b5cfc2;
-    height: 656.5px;
+    height: 100vh;
 }
 
 .line2 {
     position: fixed;
     left: 38px;
     border-left: 20px solid #b5cfc2;
-    height: 656.5px;
+    height: 100vh;
 }
 
 .triangle {
