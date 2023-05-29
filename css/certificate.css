@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.line1 {
+    position: fixed;
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
+}
+
+.line2 {
+    position: fixed;
+    left: 38px;
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
+}
+
+.triangle {
+    position: absolute;
+    left: 55px;
+    top: 14px;
+    border: 20px solid transparent;
+    border-right: 20px solid #000000;
+}
+
+.text {
+    position: absolute;
+    left: 150px;
+    top: 27px;
+    color: #000000;
+    font-weight: 600;
+}
+
+.personInfo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    left: 7.5vw;
+    top: 11vh;
+    width: 70%;
+}
+
+h1 {
+    color: #545454;
+    font-size: 2.3rem;
+}
+
+p {
+    font-weight: bolder;
+    color: #545454;
+    font-size: 1.5rem;
+    margin: 20px 0px 0px 0px;
+}
+
+.person,
+.spouse,
+.child {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 15px 0px;
+
+    .person-name,
+    .spouse-name,
+    .child-name {
+        background-color: #b5cfc2;
+        width: 60%;
+        padding: 15px 20px;
+        border-radius: 50px;
+    }
+
+    .person-iin,
+    .spouse-iin,
+    .child-iin {
+        background-color: #b5cfc270;
+        width: 35%;
+        padding: 15px 20px;
+        border-radius: 50px;
+    }
+}
+
+.spouse::before {
+    position: absolute;
+    content: "СУПРУГ(А)";
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #6a6964;
+    top: -20px;
+    left: 20px;
+}
+
+.children {
+    background-color: #54545415;
+    border-radius: 20px;
+    padding: 15px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.children::before {
+    position: absolute;
+    content: "ДЕТИ";
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #6a6964;
+    top: -2px;
+    left: 40px;
+}
+
+.child {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.documents {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    left: 7.5vw;
+    top: 10vh;
+    width: 90%;
+}
+
+.person-statement {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px 0px;
+
+    .statement {
+        background-color: #b5cfc2;
+        width: 78%;
+        padding: 15px 20px;
+        border-radius: 50px;
+    }
+
+    .pdf-statement {
+        text-decoration: none;
+        color: black;
+        background-color: #b5cfc239;
+        width: 20%;
+        padding: 15px 20px;
+        border-radius: 50px;
+    }
+}
+
+.buttons {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    left: 7.5vw;
+    top: 20vh;
+    width: 90%;
+    text-align: center;
+    margin-top: -50px;
+    margin-bottom: 200px;
+}
+
+a.yes {
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    color: black;
+    background-color: #00bf6370;
+    width: 20%;
+    padding: 15px 20px;
+    border-radius: 50px;
+    margin-left: 58%;
+}
+
+a.no {
+    text-decoration: none;
+    display: block;
+    color: black;
+    background-color: #ff575770;
+    width: 20%;
+    padding: 15px 20px;
+    border-radius: 50px;
+}
