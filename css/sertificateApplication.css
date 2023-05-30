@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+.line1 {
+    position: fixed; 
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
+}
+
+.line2 {
+    position: fixed;
+    left: 38px;
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
+}
+
+.triangle {
+    position: absolute;
+    left: 55px;
+    top: 14px;
+    border: 20px solid transparent;
+    border-right: 20px solid #000000;
+}
+
+.text {
+    position: absolute;
+    left: 150px;
+    top: 27px;
+    color: #000000;
+    font-weight: 600;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.info {
+    position: relative;
+    left: 22vh;
+    top: 7.5vw;
+    justify-content: space-around;
+    width: 80%;
+    display: flex;
+}
+
+.personalData {
+    display: flex;
+    flex-direction: column;
+    width: 43%;
+    background: #73737315;
+    border-radius: 30px;
+    padding-bottom: 20px;
+}
+
+p.data {
+    font-weight: bolder;
+    color: #545454;
+    font-size: 1.5rem;
+    margin: 25px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    
+}
+
+p.family {
+    font-weight: bolder;
+    color: #545454;
+    font-size: 1.5rem;
+    margin: 25px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    
+}
+
+p.next {
+    position: absolute;
+    font-weight: bolder;
+    color: #000;
+    font-size: 1.5rem;
+    padding-bottom: 20px;
+    top: 128vh;
+    left: 80vw;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+input {
+    background-color: #b5cfc2;
+    width: 85%;
+    height: 5vh;
+    border: 0px;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 5px;
+    margin-left: 40px;
+    border-radius: 20px;
+    font-size: 2.5vh;
+    align-items: center;
+}
+
+input:enabled {
+    color: #545454;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.806);
+    text-align: center;
+}
+
+li::before {
+    position: relative;
+    font-weight: bolder;
+    color: #545454;
+    top: 1.5vh;
+    left: 3.6vw;
+}
+
+.iin::before {
+    content: "ИИН";
+}
+
+.surname::before {
+    content: "ФАМИЛИЯ";
+}
+
+.name::before {
+    content: "ИМЯ";
+}
+
+.patronymic::before {
+    content: "ОТЧЕСТВО";
+}
+
+.id-number::before {
+    content: "№ УДОСТОВЕРЕНИЯ ЛИЧНОСТИ";
+}
+
+.marriage-number::before {
+    content: "№ СВИДЕТЕЛЬСТВА О ЗАКЛЮЧЕНИИ БРАКА";
+}
+
+.spouse::before {
+    content: "ФИО СУПРУГ(А)";
+}
+
+.spouse-iin::before {
+    content: "ИИН СУПРУГ(А)";
+}
+
+.address {
+    display: flex;
+    flex-direction: column;
+    width: 43%;
+    background-color: #73737315;
+    border-radius: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.amount-of-children::before {
+    content: "КОЛИЧЕСТВО ДЕТЕЙ";
+}
+
+.child, 
+.child-iin {
+    border-left: 4px solid #54545470;
+    margin: 0px 20px;
+    margin-top:15px;
+    max-height: 20vh;
+    overflow-y: auto;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    display: inline;
+}
+
+.child-iin {
+    margin-top: 30px;
+}
+
+.child::before {
+    content: "ДЕТИ";
+    position: relative;
+    font-weight: bolder;
+    color: #545454;
+    top: 0vh;
+    left: 2.1vw;
+}
+
+.child-iin::before {
+    content: "ИИН ДЕТЕЙ";
+    position: relative;
+    font-weight: bolder;
+    color: #545454;
+    top: 0vh;
+    left: 2.1vw; 
+}
+
+.child::-webkit-scrollbar, .child-iin::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f9f9fd;
+  }
+  
+.child::-webkit-scrollbar-track, .child-iin::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background-color: #f9f9fd;
+}
+  
+.child::-webkit-scrollbar-thumb, .child-iin::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: gray;
+}
+
+.region::before {
+    content: "ОБЛАСТЬ";
+}
+
+.district::before {
+    content: "РАЙОН";
+}
+
+.city::before {
+    content: "ГОРОД/СЕЛО";
+}
+
+.street::before {
+    content: "УЛИЦА, ДОМ, КВАРТИРА";
+}
