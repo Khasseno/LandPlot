@@ -1,3 +1,10 @@
+<?php
+session_start();
+require_once '../../../vendor/connect.php';
+
+$applications = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='sent' ORDER BY `time` DESC");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +23,11 @@
             <?php
             if(mysqli_num_rows($applications) > 0){
                 while($value = mysqli_fetch_array($applications)){
+                    $_SESSION['id'] = $value['id'];
                     echo '<li class="application">
                     <div class="fio"><h4>'.$value['name'].'</h4></div>
                     <div class="number"><h4>№'.$value['id'].'</h4></div>
-                    <a href="#"><div class="view"><h4>просмотр</h4></div></a>
+                    <a href="../applications/LandDivide.php"><div class="view"><h4>просмотр</h4></div></a>
                     </li>'; 
                 }
             }
