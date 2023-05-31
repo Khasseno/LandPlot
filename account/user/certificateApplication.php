@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../css/sertificateApplication.css">
+    <link rel="stylesheet" href="../../css/certificateApplication.css">
 </head>
 <body>
     <div class="line1"></div>    
