@@ -97,7 +97,7 @@ p {
 .children {
     background-color: #54545415;
     border-radius: 20px;
-    padding: 15px;
+    padding: 23px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -111,7 +111,7 @@ p {
     font-size: 1.2rem;
     font-weight: bolder;
     color: #6a6964;
-    top: -2px;
+    top: 4px;
     left: 40px;
 }
 
