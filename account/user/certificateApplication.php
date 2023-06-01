@@ -20,7 +20,7 @@
                 <p class="data">Личные данные</p>
 
                 <li class="iin">
-                    <input type="number" placeholder="Введите ИИН">
+                    <input type="text" placeholder="Введите ИИН">
                 </li>
 
                 <li class="surname">
@@ -36,13 +36,13 @@
                 </li>
 
                 <li class="id-number">
-                    <input type="number" placeholder="Введите № удостоверения личности">
+                    <input type="text" placeholder="Введите № удостоверения личности">
                 </li>
 
                 <p class="family">Сведения о семье</p>
 
                 <li class="marriage-number">
-                    <input type="number" placeholder="Введите № свидетельства о заключени брака">
+                    <input type="text" placeholder="Введите № свидетельства о заключени брака">
                 </li>
 
                 <li class="spouse">
@@ -50,7 +50,7 @@
                 </li>
 
                 <li class="spouse-iin">
-                    <input type="number" placeholder="Введите ИИН супруг(а)">
+                    <input type="text" placeholder="Введите ИИН супруг(а)">
                 </li>
             </ul>
         </div>
@@ -85,19 +85,19 @@
             <div class="child-iin">
                 <ul>
                     <li>
-                        <input type="number" placeholder="ИИН ребенка 1">
+                        <input type="text" placeholder="ИИН ребенка 1">
                     </li>
 
                     <li>
-                        <input type="number" placeholder="ИИН ребенока 2">
+                        <input type="text" placeholder="ИИН ребенока 2">
                     </li>
 
                     <li>
-                        <input type="number" placeholder="ИИН ребенка 3">
+                        <input type="text" placeholder="ИИН ребенка 3">
                     </li>
 
                     <li>
-                        <input type="number" placeholder="ИИН ребенка 4">
+                        <input type="text" placeholder="ИИН ребенка 4">
                     </li>
                 </ul>
             </div>
