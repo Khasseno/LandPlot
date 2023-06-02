@@ -21,20 +21,17 @@ a {
     padding: 10px 40px;
 }
 
-.line {
+.line1 {
     position: fixed;
-    right: 98.5%;
-    background-color: #b5cfc2;
-    height: 100%;
-    width: 25px;
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
 }
 
 .line2 {
     position: fixed;
-    right: 95.5%;
-    background-color: #b5cfc2;
-    height: 100%;
-    width: 25px;
+    left: 38px;
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
 }
 
 .header {
@@ -155,18 +152,43 @@ a {
 }
 
 .application-status {
-    background-color: #c6cfb590;
     padding-left: 10px;
     padding-right: 10px;
     width: 20%;
+}
+
+.send {
+    background-color: #cbcfb590;
+    width: 45%;
+}
+
+.send::after {
+    content: 'Отправлено';
+}
+
+.accept {
+    background-color: #b8b5cf90;
+    width: 45%;
+}
+
+.accept::after {
+    content: 'Принято';
 }
 
 .success {
     background-color: #b5cfc290;
 }
 
+.success::after {
+    content: 'Выдано';
+}
+
 .deny {
     background-color: #cfb5b590;
+}
+
+.deny::after {
+    content: 'Отказано';
 }
 
 .application-save {
