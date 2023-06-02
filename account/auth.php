@@ -5,18 +5,20 @@
     $Login = filter_var(trim($_POST['Login']), FILTER_SANITIZE_STRING);
     $Pass = filter_var(trim($_POST['Pass']), FILTER_SANITIZE_STRING);
     
-    $result = mysqli_query($connect, "SELECT `Login`, `Pass` FROM `accounts` WHERE `Login`='$Login' AND `Pass`='$Pass'");
+    $result = mysqli_query($connect, "SELECT `iin`, `pass` FROM `accounts` WHERE `iin`='$Login' AND `pass`='$Pass'");
     if(mysqli_num_rows($result) > 0){
         echo "Correct";
-        $status = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `Status` FROM `accounts` WHERE `Login`='$Login' AND `Pass`='$Pass'"))['Status'];
+        $status = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `status` FROM `accounts` WHERE `iin`='$Login' AND `pass`='$Pass'"))['status'];
+        $_SESSION['status'] = $status;
+        $_SESSION['iin'] = $Login;
         switch($status){
-            case 'User':
+            case 'user':
                 header('Location: profileuser.php');
                 break;
-            case 'Worker':
+            case 'worker':
                 header('Location: profileworker.php');
                 break;
-            case 'Head':
+            case 'head':
                 header('Location: profilehead.php');
                 break;
         }
