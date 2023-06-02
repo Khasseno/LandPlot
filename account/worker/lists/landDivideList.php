@@ -1,8 +1,8 @@
 <?php
-session_start();
-require_once '../../../vendor/connect.php';
+    session_start();
+    require_once '../../../vendor/connect.php';
 
-$applications = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='sent' ORDER BY `time` DESC");
+    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='send'"), MYSQLI_ASSOC)
 ?>
 
 <!DOCTYPE html>
@@ -17,18 +17,17 @@ $applications = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status
 <body>
         <div class="line1"></div>    
         <div class="line2"></div>
-        <a href="#"><div class="triangle"></div></a>
+        <a href="../../profileworker.php"><div class="triangle"></div></a>
         <div class="text">Определение делимости и неделимости земельного участка</div>
         <ul class="list">
             <?php
-            if(mysqli_num_rows($applications) > 0){
-                while($value = mysqli_fetch_array($applications)){
-                    $_SESSION['id'] = $value['id'];
+            if (count($applications) > 0) {
+                foreach ($applications as $application) {
                     echo '<li class="application">
-                    <div class="fio"><h4>'.$value['name'].'</h4></div>
-                    <div class="number"><h4>№'.$value['id'].'</h4></div>
-                    <a href="../applications/LandDivide.php"><div class="view"><h4>просмотр</h4></div></a>
-                    </li>'; 
+                        <div class="fio"><h4>'.$application['name'].'</h4></div>
+                        <div class="number"><h4>№'.$application['Id'].'</h4></div>
+                        <a href="../applications/LandDivide.php?id='.$application['Id'].'"><div class="view"><h4>просмотр</h4></div></a>
+                        </li>';
                 }
             }
             ?>
