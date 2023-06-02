@@ -1,3 +1,11 @@
+<?php
+
+    session_start();
+    require_once '../../../vendor/connect.php';
+
+    $id = $_GET['id'];
+    $application = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `id`='$id'"))
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,18 +18,18 @@
 <body>
         <div class="line1"></div>    
         <div class="line2"></div>
-        <a href="#">
+        <a href="../lists/landDivideList.php">
             <div class="triangle">
         </div></a>
         <div class="text"> Просмотр заявки "Определение делимости и неделимости земельного участка"</div>
         <div class="personInfo">
-            <h1>ЗАЯВКА № "номер заявки"</h1>
+            <h1>ЗАЯВКА № <?php echo $application['Id']?></h1>
             <p>Сведения о заявителе:</p>
             <div class="person">
-                <div class="person-name">Фамилия Имя Отчество</div>
-                <div class="person-iin">ИИН</div>
+                <div class="person-name"><?php echo $application['name']?></div>
+                <div class="person-iin"><?php echo $application['iin']?></div>
             </div>
-            <div class="home-address">Домашний адрес</div>
+            <div class="home-address"><?php echo $application['address']?></div>
         </div>
         <div class="documents">
             <p>Предоставляемые документы:</p>
