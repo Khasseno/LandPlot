@@ -4,11 +4,10 @@ require_once '../vendor/connect.php';
 
 if($_SESSION['status'] != "user") header("Location: authorization.php");
 
-$iin = $_SESSION['iin'];
-$applications = mysqli_query($connect, "SELECT * FROM `landdivide` ORDER BY `time` DESC");
-$name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts` WHERE `iin`='$iin'"))['name'];
+$iin = filter_var(trim($_SESSION['iin']), FILTER_SANITIZE_STRING);
 
-$landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
+$applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `iin`='$iin' ORDER BY `time` DESC"), MYSQLI_ASSOC);
+$name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts` WHERE `iin`='$iin'"))['name'];
 ?>
 
 <!DOCTYPE html>
@@ -25,10 +24,8 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
 </head>
 
 <body>
-    <div class="lines">
-        <div class="line"></div>
-        <div class="line2"></div>
-    </div>
+    <div class="line1"></div>
+    <div class="line2"></div>
 
     <div class="header">
         <span class="fullname"><?php echo $name; ?></span>
@@ -39,7 +36,7 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
                 </svg>
             </button>
             <ul id="menu" class="menu">
-                <li><a href="#">УСЛУГИ</a></li>
+                <li><a href="user/service.php">УСЛУГИ</a></li>
                 <li><a href="authorization.php">ВЫХОД</a></li>
             </ul>
         </div>
@@ -49,38 +46,17 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
         <p class="application-title">ЗАЯВКИ</p>
         <ul class="application-list">
             <?php
-            if(mysqli_num_rows($applications) > 0){
-                for($i = 0; $i < mysqli_num_rows($applications); $i++){
-                    switch(mysqli_fetch_assoc($applications)['status']){
-                    case 'sent':
-                        echo '<li class="application">
+            if(count($applications) > 0){
+                foreach ($applications as $application){
+                    $present = $application['status'] ==='send' || $application['status'] ==='accept' ? 
+                    '</li>' : '<div class="application-save">скачать</div></li>';
+                    echo '<li class="application">
                         <div class="application-name">Заявление на определение делимости или неделимости земельного участкаs</div>
-                        <div class="application-status '.mysqli_fetch_assoc($applications)['status'].'">отправлено</div>
-                        </li>';
-                        break;
-                    case 'accepted':
-                        echo '<li class="application">
-                        <div class="application-name">Заявление на определение делимости или неделимости земельного участкаs</div>
-                        <div class="application-status '.mysqli_fetch_assoc($applications)['status'].'">принято</div>
-                        </li>';
-                        break;
-                    case 'success':
-                        echo '<li class="application">
-                        <div class="application-name">Заявление на определение делимости или неделимости земельного участкаs</div>
-                        <div class="application-status '.mysqli_fetch_assoc($applications)['status'].'">выдано</div>
-                        <div class="application-save">скачать</div>
-                        </li>';
-                        break;
-                    case 'deny':
-                        echo '<li class="application">
-                        <div class="application-name">Заявление на определение делимости или неделимости земельного участкаs</div>
-                        <div class="application-status '.mysqli_fetch_assoc($applications)['status'].'">отказано</div>
-                        <div class="application-save">скачать</div>
-                        </li>';
-                        break;
+                        <div class="application-status '.$application['status'].'"></div>
+                        '.$present;
                     }
                 }
-            }?>
+            ?>
         </ul>
     </div>
 
