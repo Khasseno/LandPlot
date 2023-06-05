@@ -11,7 +11,7 @@
 <body>
      <div class="line1"></div>
      <div class="line2"></div>
-     <a href="#"><div class="triangle"></div></a>
+     <a href="certificateApplication.php"><div class="triangle"></div></a>
      <div class="title">Выдача жилищных сертификатов</div>
 
      <div class="container-max">
