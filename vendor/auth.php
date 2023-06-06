@@ -13,18 +13,18 @@
         $_SESSION['iin'] = $Login;
         switch($status){
             case 'user':
-                header('Location: profileuser.php');
+                header('Location: ../account/profileuser.php');
                 break;
             case 'worker':
-                header('Location: profileworker.php');
+                header('Location: ../account/profileworker.php');
                 break;
             case 'head':
-                header('Location: profilehead.php');
+                header('Location: ../account/profilehead.php');
                 break;
         }
     }else{
         $_SESSION['auth'] = "Неверный логин или пароль";
-        header('Location: authorization.php');
+        header('Location: ../account/authorization.php');
     }
     exit();
 ?>
