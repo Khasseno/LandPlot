@@ -17,7 +17,7 @@ $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts`
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/profileuser.css">
+    <link rel="stylesheet" href="../css/account/profileuser.css">
     <title>
     <?php echo $name; ?>
     </title>
@@ -48,7 +48,7 @@ $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts`
             <?php
             if(count($applications) > 0){
                 foreach ($applications as $application){
-                    $present = $application['status'] ==='send' || $application['status'] ==='accept' ? 
+                    $present = $application['status'] ==='sent' || $application['status'] ==='accept' ? 
                     '</li>' : '<div class="application-save">скачать</div></li>';
                     echo '<li class="application">
                         <div class="application-name">Заявление на определение делимости или неделимости земельного участкаs</div>

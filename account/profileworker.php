@@ -7,7 +7,7 @@ if($_SESSION['status'] != "worker") header("Location: authorization.php");
 $iin = $_SESSION['iin'];
 $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts` WHERE `iin`='$iin'"))['name'];
 
-$landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
+$landdivide = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='sent'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/profileworker.css">
+    <link rel="stylesheet" href="../css/account/profileworker.css">
     <title>
         <?php
         echo $name;
@@ -25,6 +25,8 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
 </head>
 
 <body>
+    <div class="line1"></div>
+    <div class="line2"></div>
     <div class="header">
         <span class="fullname"><?php echo $name; ?></span>
         <div class="navigator">
@@ -39,27 +41,31 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide`");
         </div>
     </div>
 
-    <p class="applications"> ЗАЯВКИ </p>
     <div class="wrapper">
-        <div>
-            <div class="board">
+    <p class="application-title"> ЗАЯВКИ </p>
+        <ul class="application-list">
+            <a href="worker/lists/landDivideList.php">
+            <li class="application">
+            <div class="application-name">
                 Определение делимости и неделимости земельного участка
             </div>
-            <div class="score">
+            <div class="application-status">
                 <?php echo mysqli_num_rows($landdivide); ?>
-            </div>
-        </div>
-        <div>
-            <div class="board">
+            </div>    
+        </li>
+        </a>
+        <a href="worker/lists/certificates.php">
+        <li class="application">
+        <div class="application-name">
                 Выдача жилищных сертификатов
             </div>
-            <div class="score">
+            <div class="application-status">
                 0
             </div>
-        </div>
+        </li>
+        </a>
+    </ul>
     </div>
-    <div class="vertical-1"></div>
-    <div class="vertical-2"></div>
     <script type="text/javascript" src="../script/profile.js"></script>
 </body>
 

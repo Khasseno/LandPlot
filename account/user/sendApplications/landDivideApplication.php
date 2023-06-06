@@ -1,7 +1,8 @@
 <?php
-
     session_start();
-    iinOfPerson = $_POST['name'];
+    $iinOfPerson = $_POST['name'];
+
+    if($_SESSION['status'] != "user") header("Location: authorization.php");
 
 ?>
 
@@ -12,17 +13,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../css/landDivideApplication.css">
+    <link rel="stylesheet" href="../../../css/account/user/sendApplications/landDivideApplication.css">
 </head>
 <body>
     <div class="line1"></div>    
     <div class="line2"></div>
-    <a href="service.php">
+    <a href="../service.php">
         <div class="triangle">
     </div></a>
     <div class="text">Определение делимости и неделимости земельного участка</div>
     <form action="" class="info" method="post">
-        <div class="input-container">
+        <div class="input-container" id="container1">
             <div class="personalData">
                 <ul>
                     <p class="data">Личные данные</p>
@@ -71,9 +72,8 @@
                 </ul>
             </div>
         </div>
+        <a href="LandDivideApplicationNext.php">
         <button type="button" class="next">ДАЛЕЕ</button>
-    </form>
-
-    <script src="../../script/applications.js"></script>
+        </a>        
 </body>
 </html>

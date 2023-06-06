@@ -2,7 +2,7 @@
     session_start();
     require_once '../../../vendor/connect.php';
 
-    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='sent'"), MYSQLI_ASSOC)
+    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='accept'"), MYSQLI_ASSOC)
 ?>
 
 <!DOCTYPE html>
@@ -12,12 +12,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../css/account/worker/lists/applicationList.css">
+    <link rel="stylesheet" href="../../../css/account/head/lists/applicationList.css">
 </head>
 <body>
         <div class="line1"></div>    
         <div class="line2"></div>
-        <a href="../../profileworker.php"><div class="triangle"></div></a>
+        <a href="../../profilehead.php"><div class="triangle"></div></a>
         <div class="text">Определение делимости и неделимости земельного участка</div>
         <ul class="list">
             <?php

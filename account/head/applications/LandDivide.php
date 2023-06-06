@@ -7,7 +7,7 @@
     $status = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `status` FROM `landdivide` WHERE `id`='$id'"))['status'];
     $application = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `id`='$id'"));
 
-    if($status != 'sent')  header("Location: ..lists/landDivideList.php");
+    if($status != 'accept')  header("Location: ..lists/landDivideList.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../css/account/worker/applications/LandDivide.css">
+    <link rel="stylesheet" href="../../../css/account/head/applications/LandDivide.css">
 </head>
 <body>
         <div class="line1"></div>    
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="buttons">
-            <a href="#" class="yes">отправить на согласование</a>
+            <a href="#" class="yes">согласовать</a>
             <a href="#" class="no">отклонить</a>
         </div>
 </body>

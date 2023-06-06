@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+if($_SESSION['status'] != "user") header("Location: authorization.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../css/certificateApplication.css">
+    <link rel="stylesheet" href="../../../css/account/user/sendApplications/certificateApplication.css">
 </head>
 <body>
     <div class="line1"></div>    
     <div class="line2"></div>
-    <a href="service.php">
+    <a href="../service.php">
         <div class="triangle">
     </div></a>
     <div class="text">Выдача жилищных сертификатов</div>
@@ -94,7 +99,9 @@
     
             </div>  
         </div>
+        <a href="certificateApplicationNext.php">
         <button type="button" class="next">ДАЛЕЕ</button>
+</a>
     </form>
 
    <script src="../../../script/applications.js"></script>
