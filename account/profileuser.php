@@ -6,7 +6,7 @@ if($_SESSION['status'] != "user") header("Location: authorization.php");
 
 $iin = filter_var(trim($_SESSION['iin']), FILTER_SANITIZE_STRING);
 
-$applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `iin`='$iin' ORDER BY `time` DESC"), MYSQLI_ASSOC);
+$applications = mysqli_fetch_all(mysqli_query($connect, "SELECT `applicationName`,`status`,`time`,`response` FROM `landdivide` WHERE `iin` = '$iin' UNION SELECT `applicationName`,`status`,`time`,`response` FROM `certificate` WHERE `applicantIIN` = '$iin' ORDER BY `time` DESC"), MYSQLI_ASSOC);
 $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts` WHERE `iin`='$iin'"))['name'];
 ?>
 
@@ -36,8 +36,8 @@ $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts`
                 </svg>
             </button>
             <ul id="menu" class="menu">
-                <li><a href="user/service.php">УСЛУГИ</a></li>
-                <li><a href="authorization.php">ВЫХОД</a></li>
+                <li><a class="menu-element" href="user/service.php">УСЛУГИ</a></li>
+                <li><a class="menu-element" href="authorization.php">ВЫХОД</a></li>
             </ul>
         </div>
     </div>
@@ -49,9 +49,9 @@ $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts`
             if(count($applications) > 0){
                 foreach ($applications as $application){
                     $present = $application['status'] ==='sent' || $application['status'] ==='accept' ? 
-                    '</li>' : '<div class="application-save">скачать</div></li>';
+                    '</li>' : '<a class="application-save" href="../documents/responseFiles/'.$application['response'].'">скачать</a></li>';
                     echo '<li class="application">
-                        <div class="application-name">Заявление на определение делимости или неделимости земельного участкаs</div>
+                        <div class="application-name">'.$application['applicationName'].'</div>
                         <div class="application-status '.$application['status'].'"></div>
                         '.$present;
                     }
