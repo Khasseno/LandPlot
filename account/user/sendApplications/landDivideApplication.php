@@ -1,9 +1,18 @@
 <?php
+
     session_start();
-    $iinOfPerson = $_POST['name'];
+
+    require_once '../../../vendor/connect.php';
 
     if($_SESSION['status'] != "user") header("Location: authorization.php");
 
+    $iin = $_SESSION['iin'];
+    $data = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM `accounts` WHERE `iin`='$iin'"));
+
+    $nameArr = explode(' ', $data['name']);
+    $surname = $nameArr[0];
+    $name = $nameArr[1];
+    $patronymic = count($nameArr) > 2 ? $nameArr[2] : ' ';
 ?>
 
 <!DOCTYPE html>
@@ -22,30 +31,30 @@
         <div class="triangle">
     </div></a>
     <div class="text">Определение делимости и неделимости земельного участка</div>
-    <form action="" class="info" method="post">
-        <div class="input-container" id="container1">
+    <form action="" class="info" method="post" id="landDivideApplicationForm">
+        <div class="input-container">
             <div class="personalData">
                 <ul>
                     <p class="data">Личные данные</p>
     
                     <li class="iin">
-                        <input type="number" placeholder="Введите ИИН">
+                        <input value="<?php echo $data['iin'];?>" pattern="[0-9]{12}" max="12" name="iin" form="landDivideApplicationForm" type="text" placeholder="Введите ИИН" required>
                     </li>
     
                     <li class="surname">
-                        <input type="text" placeholder="Введите фамилию">
+                        <input value="<?php echo $surname;?>" name="surname" form="landDivideApplicationForm" type="text" placeholder="Введите фамилию" required>
                     </li>
     
                     <li class="name">
-                        <input type="text" placeholder="Введите имя">
+                        <input value="<?php echo $name;?>" name="name" form="landDivideApplicationForm" type="text" placeholder="Введите имя" required>
                     </li>
     
                     <li class="patronymic">
-                        <input type="text" placeholder="Введите отчество">
+                        <input value="<?php echo $patronymic;?>" name="patronymic" form="landDivideApplicationForm" type="text" placeholder="Введите отчество" required>
                     </li>
     
                     <li class="id-number">
-                        <input type="number" placeholder="Введите № удостоверения личности">
+                        <input value="<?php echo $data['certificateId'];?>"pattern="[0-9]{9}" max="9" name="id-number" form="landDivideApplicationForm" type="text" placeholder="Введите № удостоверения личности" required>
                     </li>
                 </ul>
             </div>
@@ -55,25 +64,40 @@
                     <p class="addressData">Данные по прописке</p>
     
                     <li class="region">
-                        <input type="text" placeholder="Введите область">
-                    </li>
-    
-                    <li class="district">
-                        <input type="text" placeholder="Введите район">
+                        <input value="<?php echo $data['region'];?>" name="region" form="landDivideApplicationForm" type="text" placeholder="Введите область" required>
                     </li>
     
                     <li class="city">
-                        <input type="text" placeholder="Введите город/село">
+                        <input value="<?php echo $data['city'];?>" name="city" form="landDivideApplicationForm" type="text" placeholder="Введите город/село" required>
+                    </li>
+
+                    <li class="district">
+                        <input value="<?php echo $data['district'];?>" name="district" form="landDivideApplicationForm" type="text" placeholder="Введите район" required>
                     </li>
     
                     <li class="street">
-                        <input type="text" placeholder="Введите улицу, дом, квартиру">
+                        <input value="<?php echo $data['address'];?>" name="address" form="landDivideApplicationForm" type="text" placeholder="Введите улицу, дом, квартиру" required>
                     </li>
                 </ul>
             </div>
         </div>
-        <a href="LandDivideApplicationNext.php">
-        <button type="button" class="next">ДАЛЕЕ</button>
-        </a>        
+        <button form="landDivideApplicationForm" type="submit" class="next">ДАЛЕЕ</button>
+    </form>
+
+    <script>
+        form = document.getElementById('landDivideApplicationForm');
+        form.addEventListener('submit', formSend);
+
+        async function formSend(e) {
+            e.preventDefault();
+
+            formData = new FormData(form);
+            let response = await fetch('../../../vendor/firstFormSave/firstFormLandDivideSave.php', {
+                method: 'POST',
+                body: formData
+            })
+            document.location = 'landDivideApplicationNext.php';
+        }
+    </script>
 </body>
 </html>
