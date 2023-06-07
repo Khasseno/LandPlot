@@ -24,31 +24,26 @@ if($_SESSION['status'] != "user") header("Location: authorization.php");
 
           <div class="words">заявление на предоставление жилищного сертификата</div>
           <label for="pin-doc">
-            <!-- <span class="pin-text">Прикрепить документ</span> -->
             <input type="file" name="mainApplication" id="pin-doc">
           </label>
 
           <div class="words">документ,удостоверяющий личность заявителя и членов семьи(супруг(а), несовершеннолетних детей)(для идентификации личности) </div>
           <label for="pin-doc">
-            <!-- <span class="pin-text">Прикрепить документ</span> -->
             <input type="file" name="identifyDoc" id="pin-doc">
           </label>
           
           <div class="words">справка о доходах за последнии шесть месяцев по трудовой и (или) предпренимательской деятельности(на всех членов семьи)</div>
           <label for="pin-doc">
-            <!-- <span class="pin-text">Прикрепить документ</span> -->
             <input type="file" name="incomeStatement" id="pin-doc">
           </label>
 
           <div class="words">справка с места работы,за исключением социально-уязвимых слоев население</div>
           <label for="pin-doc">
-            <!-- <span class="pin-text">Прикрепить документ</span> -->
             <input type="file" name="workStatement" id="pin-doc">
           </label>
             
           <div class="words">письмо БВУ об одобрении выдачи ипотечного займа на приобретении жилья заявителю,содержащее сведения о сумме,размере о первоначального взноса и сумме ежемесячного платежа по ипотечному жилищному займу</div>
           <label for="pin-doc">
-            <!-- <span class="pin-text">Прикрепить документ</span> -->
             <input type="file" name="STBMassage" id="pin-doc">
           </label>
 
