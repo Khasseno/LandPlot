@@ -3,6 +3,8 @@
     session_start();
     require_once '../../../vendor/connect.php';
 
+    if($_SESSION['status'] != "worker") header("Location: authorization.php");
+
     $id = mysqli_real_escape_string($connect, htmlspecialchars($_GET['id']));
     $application = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM `certificate` WHERE `id`='$id'"));
 
