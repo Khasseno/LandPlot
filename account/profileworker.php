@@ -8,6 +8,7 @@ $iin = $_SESSION['iin'];
 $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts` WHERE `iin`='$iin'"))['name'];
 
 $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='sent'");
+$certificate = mysqli_query($connect, "SELECT * FROM `certificate` WHERE `status`='sent'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`=
     <link rel="stylesheet" href="../css/account/profileworker.css">
     <title>
         <?php
-        echo $name;
+            echo $name;
         ?>
     </title>
 </head>
@@ -42,29 +43,30 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`=
     </div>
 
     <div class="wrapper">
-    <p class="application-title"> ЗАЯВКИ </p>
+        <p class="application-title"> ЗАЯВКИ </p>
         <ul class="application-list">
             <a href="worker/lists/landDivideList.php">
-            <li class="application">
-            <div class="application-name">
-                Определение делимости и неделимости земельного участка
-            </div>
-            <div class="application-status">
-                <?php echo mysqli_num_rows($landdivide); ?>
-            </div>    
-        </li>
-        </a>
-        <a href="worker/lists/certificates.php">
-        <li class="application">
-        <div class="application-name">
-                Выдача жилищных сертификатов
-            </div>
-            <div class="application-status">
-                0
-            </div>
-        </li>
-        </a>
-    </ul>
+                <li class="application">
+                    <div class="application-name">
+                        Определение делимости и неделимости земельного участка
+                    </div>
+                    <div class="application-status">
+                        <?php echo mysqli_num_rows($landdivide); ?>
+                    </div>    
+                </li>
+            </a>
+
+            <a href="worker/lists/certificates.php">
+                <li class="application">
+                    <div class="application-name">
+                        Выдача жилищных сертификатов
+                    </div>
+                    <div class="application-status">
+                        <?php echo mysqli_num_rows($certificate);?>
+                    </div>
+                </li>
+            </a>
+        </ul>
     </div>
     <script type="text/javascript" src="../script/profile.js"></script>
 </body>
