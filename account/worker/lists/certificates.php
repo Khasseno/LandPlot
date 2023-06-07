@@ -4,7 +4,7 @@
 
     if($_SESSION['status'] != "worker") header("Location: authorization.php");
 
-    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `certificate` WHERE `status`='sent'"), MYSQLI_ASSOC)
+    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `certificate` WHERE `status`='sent'"), MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@
 <body>
         <div class="line1"></div>    
         <div class="line2"></div>
-        <a href="#"><div class="triangle"></div></a>
+        <a href="../../profileworker.php"><div class="triangle"></div></a>
         <div class="text">Выдача жилищных сертификатов</div>
         <ul class="list">
         <?php
