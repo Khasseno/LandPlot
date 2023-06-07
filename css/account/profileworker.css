@@ -10,20 +10,17 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-.line {
+.line1 {
     position: fixed;
-    right: 98.5%;
-    background-color: #b5cfc2;
-    height: 100%;
-    width: 25px;
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
 }
 
 .line2 {
     position: fixed;
-    right: 95.5%;
-    background-color: #b5cfc2;
-    height: 100%;
-    width: 25px;
+    left: 38px;
+    border-left: 20px solid #b5cfc2;
+    height: 100vh;
 }
 
 .header {
@@ -68,6 +65,7 @@
     margin-top: 10px;
     padding: 10px 40px;
 }
+
 .menu-btn {
     background-color: #ffffff00;
     position: absolute;
@@ -171,7 +169,7 @@
     height: 100vh;
 }
 
-.wrapper a{
+.wrapper a {
     text-decoration: none;
     color: #000;
 }
