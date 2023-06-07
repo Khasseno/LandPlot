@@ -2,7 +2,9 @@
     session_start();
     require_once '../../../vendor/connect.php';
 
-    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='sent'"), MYSQLI_ASSOC)
+    if($_SESSION['status'] != "worker") header("Location: authorization.php");
+
+    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='sent'"), MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
