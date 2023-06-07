@@ -8,6 +8,7 @@ $iin = $_SESSION['iin'];
 $name = mysqli_fetch_assoc(mysqli_query($connect, "SELECT `name` FROM `accounts` WHERE `iin`='$iin'"))['name'];
 
 $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='accept'");
+$certificate = mysqli_query($connect, "SELECT * FROM `certificate` WHERE `status`='accept'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +61,7 @@ $landdivide = mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`=
                 Выдача жилищных сертификатов
             </div>
             <div class="application-status">
-                0
+                <?php echo mysqli_num_rows($certificate);?>
             </div>
         </li>
         </a>
