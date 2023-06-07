@@ -1,8 +1,21 @@
 <?php
-session_start();
+     
+    session_start();
 
-if($_SESSION['status'] != "user") header("Location: authorization.php");
+    require_once '../../../vendor/connect.php';
+
+    if($_SESSION['status'] != "user") header("Location: authorization.php");
+
+    $iin = $_SESSION['iin'];
+    $data = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM `accounts` WHERE `iin`='$iin'"));
+
+    $nameArr = explode(' ', $data['name']);
+    $surname = $nameArr[0];
+    $name = $nameArr[1];
+    $patronymic = count($nameArr) > 2 ? $nameArr[2] : ' ';
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,44 +32,44 @@ if($_SESSION['status'] != "user") header("Location: authorization.php");
         <div class="triangle">
     </div></a>
     <div class="text">Выдача жилищных сертификатов</div>
-    <form action="certificateApplicationNext.php" class="info" method="post">
+    <form action="" class="info" method="post" id="certificateApplicationForm">
         <div class="input-container">
             <div class="personalData">
                 <ul>
                     <p class="data">Личные данные</p>
     
                     <li class="iin">
-                        <input type="text" name="iin" placeholder="Введите ИИН" minlength=12 maxlength=12 requried>
+                        <input value="<?php echo $data['iin'];?>" pattern="[0-9]{12}" form="certificateApplicationForm" type="text" name="iin" placeholder="Введите ИИН" maxlength="12" required>
                     </li>
     
                     <li class="surname">
-                        <input type="text" name="surname" placeholder="Введите фамилию">
+                        <input value="<?php echo $name;?>" form="certificateApplicationForm" type="text" name="surname" placeholder="Введите фамилию" maxlength="255" required>
                     </li>
     
                     <li class="name">
-                        <input type="text" name="name" placeholder="Введите имя">
+                        <input value="<?php echo $surname;?>" form="certificateApplicationForm" type="text" name="name" placeholder="Введите имя" maxlength="255" required>
                     </li>
     
                     <li class="patronymic">
-                        <input type="text" name="patronymic" placeholder="Введите отчество">
+                        <input value="<?php echo $patronymic;?>" form="certificateApplicationForm" type="text" name="patronymic" placeholder="Введите отчество" maxlength="255" required>
                     </li>
     
                     <li class="id-number">
-                        <input type="number" name="id-number" placeholder="Введите № удостоверения личности">
+                        <input value="<?php echo $data['certificateId'];?>" pattern="[0-9]{9}" form="certificateApplicationForm" type="text" name="id-number" placeholder="Введите № удостоверения личности" maxlength="9" required>
                     </li>
     
                     <p class="family">Сведения о семье</p>
     
                     <li class="marriage-number">
-                        <input type="number" name="marriage-number" placeholder="Введите № свидетельства о заключени брака">
+                        <input pattern="[0-9]{7}" form="certificateApplicationForm" type="text" name="marriage-number" placeholder="Введите № свидетельства о заключени брака" maxlength="7" required>
                     </li>
     
                     <li class="spouse">
-                        <input type="text" name="spouse" placeholder="Введите ФИО супруг(а)">
+                        <input form="certificateApplicationForm" type="text" name="spouse" placeholder="Введите ФИО супруг(а)" maxlength="255" required>
                     </li>
     
                     <li class="spouse-iin">
-                        <input type="number" name="spouse-iin" placeholder="Введите ИИН супруг(а)">
+                        <input pattern="[0-9]{12}" form="certificateApplicationForm" type="text" name="spouse-iin" placeholder="Введите ИИН супруг(а)" maxlength="12" required>
                     </li>
                 </ul>
             </div>
@@ -64,7 +77,7 @@ if($_SESSION['status'] != "user") header("Location: authorization.php");
             <div class="address">
                 <ul>
                     <li class="amount-of-children">
-                        <input id="amount-of-children" type="number" name="amount-of-children" placeholder="Введите количество детей">
+                        <input form="certificateApplicationForm" id="amount-of-children" type="number" name="amount-of-children" placeholder="Введите количество детей" max="100" required>
                     </li>
                 </ul>
                 
@@ -81,29 +94,126 @@ if($_SESSION['status'] != "user") header("Location: authorization.php");
                     <p class="family">Данные по прописке</p>
     
                     <li class="region">
-                        <input type="text" name="region" placeholder="Введите область">
-                    </li>
-    
-                    <li class="district">
-                        <input type="text" name="district" placeholder="Введите район">
+                        <input value="<?php echo $data['region'];?>" form="certificateApplicationForm" type="text" name="region" placeholder="Введите область" maxlength="255" required>
                     </li>
     
                     <li class="city">
-                        <input type="text" name="city" placeholder="Введите город/село">
+                        <input value="<?php echo $data['city'];?>" form="certificateApplicationForm" type="text" name="city" placeholder="Введите город/село" maxlength="255" required>
+                    </li>
+
+                    <li class="district">
+                        <input value="<?php echo $data['district'];?>" form="certificateApplicationForm" type="text" name="district" placeholder="Введите район" maxlength="255" required>
                     </li>
     
                     <li class="street">
-                        <input type="text" name="street" placeholder="Введите улицу, дом, квартиру">
+                        <input value="<?php echo $data['address'];?>" form="certificateApplicationForm" type="text" name="street" placeholder="Введите улицу, дом, квартиру" maxlength="255" required>
                     </li>
                 </ul>
-    
             </div>  
         </div>
-        <a href="certificateApplicationNext.php">
-        <button type="button" class="next">ДАЛЕЕ</button>
-</a>
+        <button form="certificateApplicationForm" type="submit" class="next" id="next-btn">ДАЛЕЕ</button>
     </form>
 
-   <script src="../../../script/applications.js"></script>
+    <script>
+        ulChild = document.getElementById('child');
+        ulChildIIN = document.getElementById('child-iin');
+
+        const input = document.getElementById('amount-of-children');
+        input.onchange = (e) => {
+            const { value } = e.target;
+            removeChilds('child');
+            removeChilds('child-iin');
+
+            addChild(value);
+        };
+
+        function removeChilds(elementId) {
+            while (document.getElementById(elementId).children.length > 0) {
+                document.getElementById(elementId).removeChild(document.getElementById(elementId).children[0]);
+            }
+        }
+
+        function addChild(value) {
+            for (i = 0; i < value; i++) {
+                // Создаём элементы для списка child
+                newChildLi = document.createElement('li');
+                newChildInput = document.createElement('input');
+
+                // Создаём элементы для списка child-iin
+                newChildIINLi = document.createElement('li');
+                newChildIINInput = document.createElement('input');
+
+                // Выставляем input из списка child необходмымые аттрибуты
+                setChildInputAttributes(newChildInput, i + 1);
+
+                // Выставляем input из списка child-iin необходмымые аттрибуты
+                setChildIINInputAttributes(newChildIINInput, i + 1);
+
+                // Закидываем input в один из пунктов списка child
+                newChildLi.appendChild(newChildInput);
+
+                // Закидываем input в один из пунктов списка child-iin
+                newChildIINLi.appendChild(newChildIINInput);
+
+                // Закидываем пункт списка в список child
+                ulChild.appendChild(newChildLi);
+
+                // Закидываем пункт списка в список child-iin
+                ulChildIIN.appendChild(newChildIINLi);
+            }
+        }
+
+        function setChildIINInputAttributes(input, id) {
+            input.setAttribute('type', 'text');
+            input.setAttribute('class', 'child-info');
+            input.setAttribute('name', 'child-iin-' + (id));
+            input.setAttribute('placeholder', 'ИИН ребёнка ' + id);
+            input.setAttribute('form', 'certificateApplicationForm');
+            input.setAttribute('maxlength', '12');
+            input.setAttribute('requried', '');
+        }
+
+        function setChildInputAttributes(input, id) {
+            input.setAttribute('type', 'text');
+            input.setAttribute('class', 'child-info');
+            input.setAttribute('name', 'child-name-' + (id));
+            input.setAttribute('placeholder', 'ФИО ребёнка ' + id);
+            input.setAttribute('form', 'certificateApplicationForm');
+            input.setAttribute('maxlength', '255');
+            input.setAttribute('requried', '');
+        }
+    </script>
+
+    <script>
+        form = document.getElementById('certificateApplicationForm');
+        form.addEventListener('submit', formSend);
+
+        function formAreFilled() {
+            check = true;
+            requiredInputs = document.querySelectorAll('.child-info');
+            requiredInputs.forEach((input) => {
+                if (input.value === '') {
+                    check = false;
+                }
+            })
+            return check;
+        }
+
+        async function formSend(e) {
+            e.preventDefault();
+
+            if (formAreFilled()) {
+                formData = new FormData(form);
+                let response = await fetch('../../../vendor/firstFormsSave/firstFormCertificateSave.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                document.location = 'certificateApplicationNext.php';
+
+            } else {
+                alert("Заполните все поля");
+            }
+        }
+    </script>
 </body>
 </html>
