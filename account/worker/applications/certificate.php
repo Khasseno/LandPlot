@@ -8,6 +8,8 @@
     $id = mysqli_real_escape_string($connect, htmlspecialchars($_GET['id']));
     $application = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM `certificate` WHERE `id`='$id'"));
 
+    if ($application['status'] !== "sent") header('Location: ../lists/certificates.php');
+
     $childrenNames = explode(';', $application['childrenNames']);
     $childrenIINs = explode(';', $application['childrenIINs']);
 
