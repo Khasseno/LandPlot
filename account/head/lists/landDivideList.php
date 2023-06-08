@@ -2,7 +2,9 @@
     session_start();
     require_once '../../../vendor/connect.php';
 
-    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='accept'"), MYSQLI_ASSOC)
+    if($_SESSION['status'] != "head") header("Location: authorization.php");
+
+    $applications = mysqli_fetch_all(mysqli_query($connect, "SELECT * FROM `landdivide` WHERE `status`='accept'"), MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +19,7 @@
 <body>
         <div class="line1"></div>    
         <div class="line2"></div>
-        <a href="../../profilehead.php"><div class="triangle"></div></a>
+        <a href="../../profileworker.php"><div class="triangle"></div></a>
         <div class="text">Определение делимости и неделимости земельного участка</div>
         <ul class="list">
             <?php
