@@ -19,7 +19,7 @@
 <body>
         <div class="line1"></div>    
         <div class="line2"></div>
-        <a href="../../profileworker.php"><div class="triangle"></div></a>
+        <a href="../../profilehead.php"><div class="triangle"></div></a>
         <div class="text">Определение делимости и неделимости земельного участка</div>
         <ul class="list">
             <?php
